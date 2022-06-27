@@ -1,5 +1,6 @@
 import 'package:bankofcoded/pages/home_page.dart';
 import 'package:bankofcoded/pages/signin.dart';
+import 'package:bankofcoded/pages/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
     return MaterialApp(
-      home: SignInPage(),
+      debugShowCheckedModeBanner: false,
+      home: SignUpPage(),
     );
   }
 }
