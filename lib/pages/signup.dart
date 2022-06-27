@@ -19,10 +19,7 @@ class SignUpPage extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.only(
-            left: 20,
-            right: 20,
-          ),
+          margin: const EdgeInsets.only(left: 20, right: 20),
           child: Column(
             children: [
               Image.asset(
@@ -46,10 +43,8 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
               Container(
-                  margin: EdgeInsets.only(
-                    top: 20,
-                  ),
-                  child: Text("Please Sign Up")),
+                  margin: const EdgeInsets.only(top: 20),
+                  child: const Text("Please Sign Up")),
               const TextField(
                 decoration: InputDecoration(
                   labelText: "Username",
