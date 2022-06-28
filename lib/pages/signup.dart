@@ -42,7 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   print("waiting");
                   final XFile? image = await ImagePicker()
                       .pickImage(source: ImageSource.gallery)
-                      .timeout(Duration(seconds: 5));
+                      .timeout(Duration(seconds: 3));
                   print("done");
 
                   if (image == null) return;

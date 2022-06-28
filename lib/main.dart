@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => HomePage(),
+        builder: (context, state) => SignUpPage(),
       ),
     ],
   );
