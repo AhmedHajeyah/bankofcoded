@@ -5,12 +5,22 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   SignUpPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   TextEditingController usernameController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
+
   var _image;
-  final _picker = ImagePicker();
+
+  // final _picker = ImagePicker();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,10 +39,15 @@ class SignUpPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () async {
-                  final XFile? image =
-                      await _picker.pickImage(source: ImageSource.gallery);
+                  print("waiting");
+                  final XFile? image = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery)
+                      .timeout(Duration(seconds: 5));
+                  print("done");
+
+                  if (image == null) return;
                   setState(() {
-                    _image = File(image!.path);
+                    _image = File(image.path);
                   });
                 },
                 child: CircleAvatar(
@@ -67,7 +82,7 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  void getImage(BuildContext context) {}
+  // void getImage(BuildContext context) {}
 
-  void setState(Null Function() param0) {}
+  // void setState(Null Function() param0) {}
 }
