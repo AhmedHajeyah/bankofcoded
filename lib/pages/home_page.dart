@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(right: 200, top: 30),
+                  margin: EdgeInsets.only(right: 200, top: 25),
                   child: const Text(
                     'Password',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -38,23 +38,26 @@ class HomePage extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(right: 200),
                   child: TextFormField(
-                    decoration: const InputDecoration(
-                        border: UnderlineInputBorder(),
-                        hintText: 'Enter your username'),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 75, top: 50),
-                  child: Row(
-                    children: [
-                      const Text(
-                        'Not a User?',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                    decoration: InputDecoration(
+                      hintText: 'Enter your password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  // Container(
+                  //   margin: EdgeInsets.only(left: 75, top: 30),
+                  //   child: Row(
+                  //     children: [
+                  //       const Text(
+                  //         'Not a User?',
+                  //         style: TextStyle(
+                  //             fontSize: 20, fontWeight: FontWeight.bold),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                )
               ],
             )));
   }
