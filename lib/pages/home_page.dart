@@ -8,12 +8,54 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Plugin example app'),
-      ),
-      body: Center(
-        child: Text('Running on my new Project'),
-      ),
-    );
+        body: SafeArea(
+            minimum: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Image.asset('assets/images/logo.png'),
+                Container(
+                  margin: EdgeInsets.only(right: 200),
+                  child: const Text(
+                    'Username',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(right: 200),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                        border: UnderlineInputBorder(),
+                        hintText: 'Enter your username'),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(right: 200, top: 30),
+                  child: const Text(
+                    'Password',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(right: 200),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                        border: UnderlineInputBorder(),
+                        hintText: 'Enter your username'),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 75, top: 50),
+                  child: Row(
+                    children: [
+                      const Text(
+                        'Not a User?',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )));
   }
 }
