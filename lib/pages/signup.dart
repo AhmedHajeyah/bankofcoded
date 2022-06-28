@@ -14,8 +14,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   TextEditingController usernameController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
+  bool _isObscure = true;
 
   var _image;
 
@@ -24,58 +24,80 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Sign Up"),
-      ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.only(left: 20, right: 20),
-          child: Column(
-            children: [
-              Image.asset(
-                "assets/images/logo.png",
-                height: 200,
-                width: 200,
-              ),
-              GestureDetector(
-                onTap: () async {
-                  print("waiting");
-                  final XFile? image = await ImagePicker()
-                      .pickImage(source: ImageSource.gallery)
-                      .timeout(Duration(seconds: 3));
-                  print("done");
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            margin: const EdgeInsets.only(left: 20, right: 20),
+            child: Column(
+              children: [
+                Image.asset(
+                  "assets/images/logo.png",
+                  height: 200,
+                  width: 200,
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    print("waiting");
+                    final XFile? image = await ImagePicker()
+                        .pickImage(source: ImageSource.gallery)
+                        .timeout(Duration(seconds: 3));
+                    print("done");
 
-                  if (image == null) return;
-                  setState(() {
-                    _image = File(image.path);
-                  });
-                },
-                child: CircleAvatar(
-                  radius: 100,
-                  backgroundColor: Colors.grey,
-                  backgroundImage:
-                      _image == null ? null : Image.file(_image).image,
+                    if (image == null) return;
+                    setState(() {
+                      _image = File(image.path);
+                    });
+                  },
+                  child: CircleAvatar(
+                    radius: 100,
+                    backgroundColor: Colors.grey,
+                    backgroundImage:
+                        _image == null ? null : Image.file(_image).image,
+                  ),
                 ),
-              ),
-              Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  child: const Text("Please Sign Up")),
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: "Username",
+                Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    child: const Text("Please Sign Up")),
+                Container(
+                  margin: EdgeInsets.only(left: 35),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Username',
+                      labelStyle:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
-              ),
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: "Password",
+                Container(
+                  margin: EdgeInsets.only(left: 35),
+                  child: TextField(
+                    obscureText: _isObscure,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      labelStyle:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isObscure ? Icons.visibility : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
                 ),
-                obscureText: true,
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text("Signup"),
-              ),
-            ],
+                Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("Signup"),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
