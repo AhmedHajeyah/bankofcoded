@@ -1,22 +1,38 @@
-import 'package:bankofcoded/pages/home_page.dart';
+import 'package:bankofcoded/pages/main_page.dart';
 import 'package:bankofcoded/pages/signin.dart';
 import 'package:bankofcoded/pages/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import 'pages/details_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: SignUpPage(),
+      routeInformationProvider: _router.routeInformationProvider,
+      routeInformationParser: _router.routeInformationParser,
+      routerDelegate: _router.routerDelegate,
     );
   }
+
+  final _router = GoRouter(
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (context, state) => DetailsPage(),
+      ),
+      GoRoute(
+        path: '/signup',
+        builder: (context, state) => SignUpPage(),
+      ),
+    ],
+  );
 }
