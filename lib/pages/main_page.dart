@@ -62,12 +62,17 @@ class _HomePageState extends State<HomePage> {
                   InkWell(
                     child: Container(
                       margin: EdgeInsets.only(top: 15),
-                      child: ElevatedButton.icon(
-                          onPressed: (() {
-                            context.pushNamed('/signup');
-                          }),
-                          icon: Icon(Icons.arrow_forward),
-                          label: Text('Sign In')),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: const Text("Signin"),
+                      ),
+
+                      // ElevatedButton.icon(
+                      //     onPressed: (() {
+                      //       context.pushNamed('/signup');
+                      //     }),
+                      //     icon: Icon(Icons.arrow_forward),
+                      //     label: Text('Sign In')),
                     ),
                   ),
                   Container(
@@ -82,12 +87,14 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           padding: EdgeInsets.only(bottom: 15, left: 10),
                           margin: EdgeInsets.only(top: 15),
-                          child: ElevatedButton.icon(
-                              onPressed: (() {
+                          child: InkWell(
+                            child: ElevatedButton(
+                              onPressed: () {
                                 GoRouter.of(context).push('/signup');
-                              }),
-                              icon: Icon(Icons.arrow_forward),
-                              label: Text('Sign Up')),
+                              },
+                              child: const Text("Signup"),
+                            ),
+                          ),
                         ),
                       ],
                     ),

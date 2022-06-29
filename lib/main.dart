@@ -4,6 +4,8 @@ import 'package:bankofcoded/pages/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'pages/details_page.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => HomePage(),
+        builder: (context, state) => DetailsPage(),
       ),
       GoRoute(
         path: '/signup',
