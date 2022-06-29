@@ -1,4 +1,4 @@
-import 'package:bankofcoded/pages/home_page.dart';
+import 'package:bankofcoded/pages/main_page.dart';
 import 'package:bankofcoded/pages/signin.dart';
 import 'package:bankofcoded/pages/signup.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +26,10 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: '/',
         builder: (context, state) => HomePage(),
+      ),
+      GoRoute(
+        path: '/signup',
+        builder: (context, state) => SignUpPage(),
       ),
     ],
   );

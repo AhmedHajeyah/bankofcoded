@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -58,14 +59,15 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 15),
-                    child: TextButton(
-                      child: Text(
-                        'SignIn',
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                      onPressed: () {},
+                  InkWell(
+                    child: Container(
+                      margin: EdgeInsets.only(top: 15),
+                      child: ElevatedButton.icon(
+                          onPressed: (() {
+                            context.pushNamed('/signup');
+                          }),
+                          icon: Icon(Icons.arrow_forward),
+                          label: Text('Sign In')),
                     ),
                   ),
                   Container(
@@ -77,12 +79,15 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(
                               fontSize: 25, fontWeight: FontWeight.bold),
                         ),
-                        TextButton(
-                          child: Text(
-                            'SignUp',
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                          onPressed: () {},
+                        Container(
+                          padding: EdgeInsets.only(bottom: 15, left: 10),
+                          margin: EdgeInsets.only(top: 15),
+                          child: ElevatedButton.icon(
+                              onPressed: (() {
+                                GoRouter.of(context).push('/signup');
+                              }),
+                              icon: Icon(Icons.arrow_forward),
+                              label: Text('Sign Up')),
                         ),
                       ],
                     ),

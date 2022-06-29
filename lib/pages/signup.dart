@@ -57,7 +57,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 Container(
                     margin: const EdgeInsets.only(top: 20),
-                    child: const Text("Please Sign Up")),
+                    child: const Text(
+                      "Please Sign Up",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    )),
                 Container(
                   margin: EdgeInsets.only(left: 35),
                   child: TextField(
