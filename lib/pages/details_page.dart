@@ -8,18 +8,10 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 68, 68, 68),
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(top: 20),
-              child: Center(
-                child: Text(
-                  'User Profile',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
             Container(
               width: 350,
               height: 150,
@@ -67,29 +59,6 @@ class DetailsPage extends StatelessWidget {
                     ]),
                   ],
                 ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                top: 30,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "My Balance: ",
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                  Container(
-                      padding: EdgeInsets.only(
-                        left: 10,
-                      ),
-                      child: Text(
-                        "amount",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
-                      ))
-                ],
               ),
             ),
             Container(
