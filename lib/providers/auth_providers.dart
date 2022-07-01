@@ -19,8 +19,10 @@ class AuthProviders extends ChangeNotifier {
       required File image}) async {
     token = await AuthServices()
         .signup(username: username, password: password, image: image);
+
     setToken(token);
     print(token);
+
     //   notifyListeners();
   }
 
