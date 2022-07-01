@@ -63,7 +63,9 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       margin: EdgeInsets.only(top: 15),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push('/main');
+                        },
                         child: const Text("Signin"),
                       ),
 

@@ -27,7 +27,7 @@ class _DepositState extends State<Deposit> {
                   keyboardType: TextInputType.number,
                   inputFormatters: <TextInputFormatter>[
                     // for below version 2 use this
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                    FilteringTextInputFormatter.allow(RegExp(r'[0.0-9.0]')),
 // for version 2 and greater youcan also use this
                     FilteringTextInputFormatter.digitsOnly
                   ],

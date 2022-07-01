@@ -1,4 +1,5 @@
 import 'package:bankofcoded/pages/editprofile_page.dart';
+import 'package:bankofcoded/pages/lunch_page.dart';
 import 'package:bankofcoded/pages/main_page.dart';
 import 'package:bankofcoded/pages/signin.dart';
 import 'package:bankofcoded/pages/signup.dart';
@@ -29,11 +30,19 @@ class MyApp extends StatelessWidget {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => Deposit(),
+        builder: (context, state) => HomePage(),
+      ),
+      GoRoute(
+        path: '/main',
+        builder: (context, state) => LunchPage(),
       ),
       GoRoute(
         path: '/signup',
         builder: (context, state) => SignUpPage(),
+      ),
+      GoRoute(
+        path: '/signin',
+        builder: (context, state) => SignInPage(),
       ),
     ],
   );

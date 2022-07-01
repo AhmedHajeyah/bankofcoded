@@ -29,7 +29,7 @@ class SignInPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {},
-              child: const Text("Signup"),
+              child: const Text("SignIn"),
             ),
           ],
         ),
