@@ -16,13 +16,17 @@ class AuthProviders extends ChangeNotifier {
   void signUp(User user) async {
     token = await AuthServices().signUp(user);
     setToken(token);
-    notifyListeners();
+    print(token);
+    //   notifyListeners();
   }
 
   void signIn(User user) async {
-    token = await AuthServices().signIn(user);
+    token = await AuthServices().signIn(
+      user,
+    );
     setToken(token);
     this.user = user;
+    print(token);
     notifyListeners();
   }
 

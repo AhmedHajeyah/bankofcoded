@@ -1,13 +1,19 @@
 import 'package:bankofcoded/pages/main_page.dart';
-import 'package:bankofcoded/pages/signin.dart';
-import 'package:bankofcoded/pages/signup.dart';
+import 'package:bankofcoded/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import 'pages/details_page.dart';
+import 'providers/auth_providers.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<AuthProviders>(create: (_) => AuthProviders()),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,7 +33,7 @@ class MyApp extends StatelessWidget {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => DetailsPage(),
+        builder: (context, state) => HomePage(),
       ),
       GoRoute(
         path: '/signup',

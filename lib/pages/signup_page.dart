@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:bankofcoded/providers/auth_providers.dart';
+
+import '../models/user.dart';
+import '../providers/auth_providers.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key? key}) : super(key: key);
@@ -13,17 +18,16 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  bool _isObscure = true;
+  var _image;
+  final _picker = ImagePicker();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool _isObscure = true;
-
-  var _image;
-
-  // final _picker = ImagePicker();
-
+  TextEditingController ImageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Sing Up')),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
@@ -96,7 +100,15 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   margin: EdgeInsets.only(top: 20),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // if (_formKey.currentState!.validate()) {
+                      //   _formKey.currentState!.save();
+                      context.read<AuthProviders>().signUp(User(
+                          username: usernameController.text,
+                          password: passwordController.text,
+                          image: _image?.path));
+                      // }
+                    },
                     child: const Text("Signup"),
                   ),
                 ),
