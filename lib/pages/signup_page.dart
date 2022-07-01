@@ -88,6 +88,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                         return null;
                       },
+                      onChanged: (value) {
+                        Username = value;
+                      },
                     ),
                   ),
                   Container(
@@ -117,14 +120,18 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                         return null;
                       },
+                      onChanged: (value) {
+                        password = value;
+                      },
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 20),
-                    child: ElevatedButton(
-                      onPressed: () {
+                    child: InkWell(
+                      onTap: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+
                           signUp(Username, password, _image!);
                         }
                       },
