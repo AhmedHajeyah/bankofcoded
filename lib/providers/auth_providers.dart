@@ -10,19 +10,27 @@ import '../services/auth_services.dart';
 import '../services/client.dart';
 
 class AuthProviders extends ChangeNotifier {
-  late User user;
-  late String token = "";
+  String token = "";
+  User? user;
 
-  void signUp(User user) async {
-    token = await AuthServices().signUp(user);
+  void signUp(
+      {required String username,
+      required String password,
+      required File image}) async {
+    token = await AuthServices()
+        .signup(username: username, password: password, image: image);
     setToken(token);
-    notifyListeners();
+    print(token);
+    //   notifyListeners();
   }
 
   void signIn(User user) async {
-    token = await AuthServices().signIn(user);
+    token = await AuthServices().signIn(
+      user,
+    );
     setToken(token);
     this.user = user;
+    print(token);
     notifyListeners();
   }
 
