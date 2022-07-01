@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
+//import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import "package:bankofcoded/providers/auth_providers.dart";
@@ -76,6 +76,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.popUntil(context, (route) {
                             return route.isFirst;
                           });
+                          context.push('/main');
                         },
                         child: const Text("Signin"),
                       ),
