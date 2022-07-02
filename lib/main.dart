@@ -1,7 +1,6 @@
 import 'package:bankofcoded/pages/editprofile_page.dart';
 import 'package:bankofcoded/pages/lunch_page.dart';
 import 'package:bankofcoded/pages/main_page.dart';
-import 'package:bankofcoded/pages/signin.dart';
 import 'package:bankofcoded/screens/deposit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -41,7 +40,7 @@ class MyApp extends StatelessWidget {
       ),
       GoRoute(
         path: '/main',
-        builder: (context, state) => LunchPage(),
+        builder: (context, state) => DetailsPage(),
       ),
       GoRoute(
         path: '/signup',
@@ -49,7 +48,7 @@ class MyApp extends StatelessWidget {
       ),
       GoRoute(
         path: '/signin',
-        builder: (context, state) => SignInPage(),
+        builder: (context, state) => HomePage(),
       ),
     ],
   );

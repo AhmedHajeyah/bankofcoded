@@ -6,9 +6,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:bankofcoded/providers/auth_providers.dart';
-
-import '../models/user.dart';
 import '../providers/auth_providers.dart';
 
 class SignUpPage extends StatefulWidget {

@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import "package:bankofcoded/providers/auth_providers.dart";
 import 'package:provider/provider.dart';
+import 'package:dio/dio.dart';
 
 import '../models/user.dart';
 
@@ -16,11 +17,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _isObscure = true;
+  final _formKey = GlobalKey<FormState>();
+  String password = '';
+  String username = '';
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController userController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
+    // TextEditingController userController = TextEditingController();
+    // TextEditingController passwordController = TextEditingController();
     return Scaffold(
         body: SafeArea(
             minimum: EdgeInsets.all(15),
@@ -33,60 +37,49 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 35),
-                    child: const TextField(
-                      //dd obscureText: _isObscure,
-                      decoration: InputDecoration(
-                        labelText: 'Username',
-                        labelStyle: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                    child: TextFormField(
+                        //dd obscureText: _isObscure,
+                        decoration: InputDecoration(
+                          labelText: 'Username',
+                          labelStyle: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        onChanged: (value) {
+                          username = value;
+                        }),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 35),
-                    child: TextField(
-                      obscureText: _isObscure,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _isObscure
-                                ? Icons.visibility
-                                : Icons.visibility_off,
+                    child: TextFormField(
+                        obscureText: _isObscure,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isObscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            },
                           ),
-                          onPressed: () {
-                            setState(() {
-                              _isObscure = !_isObscure;
-                            });
-                          },
                         ),
-                      ),
-                    ),
+                        onChanged: (value) {
+                          password = value;
+                        }),
                   ),
-                  InkWell(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 15),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context.read<AuthProviders>().signIn(User(
-                              username: userController.text,
-                              password: passwordController.text));
-                          Navigator.popUntil(context, (route) {
-                            return route.isFirst;
-                          });
-                          context.push('/main');
-                        },
-                        child: const Text("Signin"),
-                      ),
-
-                      // ElevatedButton.icon(
-                      //     onPressed: (() {
-                      //       context.pushNamed('/signup');
-                      //     }),
-                      //     icon: Icon(Icons.arrow_forward),
-                      //     label: Text('Sign In')),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    child: InkWell(
+                      onTap: () {
+                        signIn(username, password);
+                      },
+                      child: const Text("Signin"),
                     ),
                   ),
                   Container(
@@ -117,8 +110,41 @@ class _HomePageState extends State<HomePage> {
               ),
             )));
   }
-}
 
+  bool isLoading = false;
+  void signIn(String username, String password) async {
+    setState(() {
+      isLoading = true;
+    });
+
+    bool? check = await Provider.of<AuthProviders>(context, listen: false)
+        .signIn(username, password);
+
+    if (check == true) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+                title: Text("Login failed!"),
+                content: Text("Incorrect username or password"),
+                actions: [
+                  TextButton(
+                    style: TextButton.styleFrom(primary: Colors.blue),
+                    onPressed: () {
+                      setState(() {
+                        context.pop();
+                      });
+                    },
+                    child: Text('Ok'),
+                  ),
+                ],
+              ));
+      isLoading = false;
+    } else {
+      isLoading = false;
+      context.push('/main');
+    }
+  }
+}
 
 //
                   //
@@ -142,4 +168,3 @@ class _HomePageState extends State<HomePage> {
                   //       ),
                   //     ],
                   //   ),
-                  // ),
