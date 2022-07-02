@@ -19,7 +19,7 @@ class AuthServices {
         "password": password,
         "image": await MultipartFile.fromFile(image.path),
       });
-      Response response = await Client.dio.post('/signup', data: data);
+      Response response = await Client.dio.post('/signup/', data: data);
       token = response.data["token"];
       print(token);
     } on DioError catch (error) {
@@ -28,15 +28,36 @@ class AuthServices {
     return token;
   }
 
-  Future<String> signUp(User user) async {
-    Response res = await Client.dio.post("/signup/", data: user.toJson());
-    print(res.data["token"]);
-    return res.data["token"];
+  Future<String> signin(String username, String password) async {
+    String token = '';
+
+    try {
+      print("from signin");
+      Response Res = await Client.dio
+          .post('/signin', data: {"username": username, "password": password});
+
+      print(Res.statusCode);
+      print('ed');
+      print(Res.data);
+
+      token = Res.data["token"];
+      print(token);
+    } on DioError catch (e) {
+      print(e);
+      return token;
+    }
+    return token;
   }
 
-  Future<String> signIn(User user) async {
-    Response res = await Client.dio.post("/signin/", data: user.toJson());
-    print(res.data["token"]);
-    return res.data["token"];
-  }
+  // Future<String> signUp(User user) async {
+  //   Response res = await Client.dio.post("/signup/", data: user.toJson());
+  //   print(res.data["token"]);
+  //   return res.data["token"];
+  // }
+
+  // Future<String> signIn(User user) async {
+  //   Response res = await Client.dio.post("/signin/", data: user.toJson());
+  //   print(res.data["token"]);
+  //   return res.data["token"];
+  // }
 }
